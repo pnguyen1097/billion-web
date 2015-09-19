@@ -30,6 +30,15 @@ RailsAdmin.config do |config|
   config.included_models = %w(User TempUser Role Membership Project Transaction
                               Competition Membership Round Match)
 
+  config.model 'Transaction' do
+    edit do
+      field :amount
+      field :recipient
+      field :points
+      field :competition
+    end
+  end
+
   config.model 'User' do
     edit do
       field :email
