@@ -14,7 +14,9 @@
 
           <div class='scroll-btn animated bounceIn'>
             <a class='btn btn-lg' href='#landing-works'>
-              <%= icon('chevron-down') %>
+              <% total = Competition.current_competition.total_raised %>
+              <%= number_to_currency total, precision: 0 %>
+              raised so far
             </a>
           </div>
         </div>
