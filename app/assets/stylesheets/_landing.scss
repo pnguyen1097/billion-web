@@ -57,7 +57,7 @@
       padding: 50px 0 75px;
 
       @media (min-width: $screen-md) {
-      padding: 190px 0 50px;
+        padding: 190px 0 50px;
       }
     }
 
@@ -103,7 +103,7 @@
   }
 
   &-works {
-    background-color: white; 
+    background-color: white;
 
     a {
       border: 1px solid $brand-primary;
@@ -127,24 +127,36 @@
         margin-bottom: 0;
       }
     }
-
-    // .col-md-4 {
-    //   border: 1px solid black;
-    // }
   }
 
   &-movements {
-
     .project-see-all {
       display: inline;
       margin: 0 auto;
     }
+  }
 
-    &.participants {
-      background-color: white;
+  &-winner {
+    background-color: #ffda8c;
+    .row { position: relative; }
 
-      .project-card .card-content {
-        background-color: $body-bg;
+    .card-container {
+      &::before, &::after {
+        $height: 177px;
+        content: '';
+        background-image: image-url('cup.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: $height;
+        top: 50%;
+        margin-top: $height / 2;
+        opacity: 0.3;
+        @include make-sm-column(3);
+        @include make-md-column(4);
+        display: none;
+        @media (min-width: $screen-sm) {
+          display: block;
+        }
       }
     }
   }

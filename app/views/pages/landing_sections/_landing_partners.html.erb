@@ -1,0 +1,33 @@
+<section class='landing-section landing-partners'>
+  <div class='container'>
+    <div class='landing-section-heading'>
+      <h1>Partners</h1>
+    </div>
+
+    <div class='row'>
+
+<% partners = {
+  'Game Jam' => ['partners/gamejam.png', nil],
+  'Independents\' Day Festival' => ['partners/id15.png', 'http://thisisindependent.com/'],
+  'Multivarious Games' => ['partners/multivarious.png', 'http://www.multivariousgames.com/'],
+  'NCT Ventures' => ['partners/nct.png', 'http://www.nctventures.com/'],
+  'Improving Enterprises' => ['partners/improving_enterprises.png', 'http://www.improvingenterprises.com/'],
+  'Small Business Owners of America' => ['partners/sboa.png', 'http://www.improvingenterprises.com/'],
+  'PackH2O' => ['partners/packh2o.png', 'http://www.packh2o.com/'],
+  'Sqribbly' => ['partners/sqribbly.png', 'http://www.sqribbly.com/'],
+  'Small Business Beanstalk' => ['partners/sbb.png', 'http://thesbb.com/'],
+} %>
+      <div class='col-md-10 col-md-offset-1'>
+        <% partners.each do |(name, (img, href))| %>
+          <% if href.present? %>
+            <%= link_to href, title: name, target: '_blank' do %>
+              <%= image_tag  img %>
+            <% end %>
+          <% else %>
+              <%= image_tag  img %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

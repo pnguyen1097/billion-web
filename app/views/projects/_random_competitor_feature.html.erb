@@ -1,4 +1,7 @@
-<% competitor = (Project.where(eliminated_at: nil) - [@project]).sample %>
+<%
+    competitor = Project.where(eliminated_at: nil).where.not(id: @project.id).order('random()').first
+    competitor ||= Project.order('random()').first
+%>
 
 <%= link_to project_path(competitor), class: 'project-competitor-container' do %>
   <section class="project-competitor">
