@@ -1,4 +1,12 @@
-<div class='project-card'>
+<%
+card_type ||= nil
+classes = ["project-card",
+          project.eliminated? ? 'project-card-eliminated' : '',
+          card_type == :winner_large ? 'project-card-winner-large' : '',
+          card_type == :winner ? 'project-card-winner' : ''
+         ].join(' ')
+%>
+<div class='<%= classes %>'>
 
   <%= link_to project_path(project), title: project.name  do %>
     <div class='card-image' style='background-image: url(<%= project.card_image_url || "http://placehold.it/640x480"%>)'>

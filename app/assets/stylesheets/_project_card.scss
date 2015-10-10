@@ -46,7 +46,6 @@
   }
 
   &-eliminated {
-    opacity: 0.3;
   }
 
   @media (min-width: $screen-sm) {
@@ -68,6 +67,49 @@
   @media (min-width: $screen-lg) {
     .card-content {
       height: 17.5em;
+    }
+  }
+
+  &-winner {
+    $ribbon-size: 80px;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: $ribbon-size;
+      height: $ribbon-size;
+      top: -$ribbon-size / 2;
+      right: -$ribbon-size / 2;
+      @include rotate(45deg);
+      background-color: $orange;
+    }
+
+    &::after {
+      $size: 29px;
+      content: '';
+      background-image: image-url('cup.png');
+      background-size: $size * 0.8;
+      background-repeat: no-repeat;
+      background-position: bottom left;
+      position: absolute;
+      width: $size;
+      height: $size;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &-winner-large {
+    .card-image {
+      height: 22em;
+    }
+
+    @media (min-width: $screen-sm) {
+      .card-content {
+        height: 12em;
+      }
     }
   }
 }

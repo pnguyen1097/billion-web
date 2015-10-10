@@ -12,11 +12,18 @@
 </div>
 
 <section class='projects-body'>
+  <% has_winner = @competition.projects.active.count == 1 %>
+  <% winner_id = @projects.active.first.id if has_winner %>
+
   <div class='container'>
     <div class='row'>
+
       <% @projects.each do |project| %>
         <div class='col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-3'>
-          <%= render partial: 'shared/project_card', locals: { project: project } %>
+          <%= render partial: 'shared/project_card', locals: {
+            project: project,
+            card_type: winner_id == project.id ? :winner : nil
+          } %>
         </div>
       <% end %>
     </div>
