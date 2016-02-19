@@ -9,7 +9,7 @@ class Competition < ActiveRecord::Base
 
   # TODO: Opportunity for null object?
   def self.current_competition
-    find_by('start_date < :now and end_date > :now', now: Time.now)
+    find_by('start_date <= :now and end_date > :now', now: Time.now)
   end
 
   # TODO: Opportunity for null object?
