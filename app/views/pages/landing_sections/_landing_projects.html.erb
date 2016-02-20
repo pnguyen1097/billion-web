@@ -1,6 +1,6 @@
 <%
 winner = @competition.projects.order_by_points.first
-projects = @competition.projects.where.not(id: winner.id)
+projects = @competition.projects.where.not(id: winner.try(:id))
 
 projects = projects.order('random()').limit(4)
 subheading = 'These projects are no longer eligable for funding through ' +

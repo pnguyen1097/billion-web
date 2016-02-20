@@ -27,10 +27,12 @@
 
 <% if @competition.projects.where(eliminated_at: nil).length == 1 %>
   <%= render 'pages/landing_sections/landing_winner' %>
-  <%= render 'pages/landing_sections/landing_join' %>
 <% else %>
-  <%= render 'pages/landing_sections/landing_movements' %>
-  <%= render 'pages/landing_sections/landing_festival' %>
+  <% if !@competition.projects.empty? %>
+    <%= render 'pages/landing_sections/landing_movements' %>
+  <% end %>
+  <%= render 'pages/landing_sections/landing_gbh' %>
   <%= render 'pages/landing_sections/landing_dates' %>
-  <%= render 'pages/landing_sections/landing_partners' %>
 <% end %>
+
+<%= render 'pages/landing_sections/landing_join' %>
