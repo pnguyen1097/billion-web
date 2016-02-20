@@ -17,8 +17,10 @@
           </li>
 
           <li>
-            <% winner = @competition.projects.order_by_points.first %>
-            <%= link_to 'The Billion Winner', project_path(winner) %>
+            <% remaining = @competition.projects.where(eliminated_at: nil) %>
+            <% if remaining.size == 1 %>
+              <%= link_to 'The Billion Winner', project_path(remaining.first) %>
+            <% end %>
           </li>
 
           <li>

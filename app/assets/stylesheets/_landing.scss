@@ -44,7 +44,7 @@
   &-masthead {
     $background: $bg-blue;
     background-color: $background;
-    background-image: url(https://s3.amazonaws.com/billioneffect/images/landing/billion-festival.jpg);
+    background-image: linear-gradient(rgba($blue,0.5), rgba($blue, 0.5)), image-url('gbh/banner.jpg');
     background-size: cover;
     background-position: center;
 
@@ -157,6 +157,18 @@
         @media (min-width: $screen-sm) {
           display: block;
         }
+      }
+    }
+  }
+
+  &-gbh {
+    background-color: $bg-blue;
+    .gbh-logo {
+      text-align: center;
+      position: relative;
+      img {
+        width: 50%;
+        margin-top: 3em;
       }
     }
   }

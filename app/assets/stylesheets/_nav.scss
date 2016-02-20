@@ -1,23 +1,28 @@
 .navbar-default {
   background-color: $white;
-  padding: $grid-gutter-width / 6;
   margin-bottom: 0;
 
-  .navbar-brand {
-    padding: 0;
+  .composite-logo {
+    height: $line-height-computed;
+    line-height: $line-height-computed;
+    .logo {
+      border-right: 1px solid $brand-primary;
+      padding-right: 0.5em;
+      vertical-align: sub;
+    }
+    .tenant {
+      padding-left: 0.5em;
+      font-size: ms(1);
+    }
   }
 
   .logo {
     height: 25px;
-    margin: 12px 15px;
   }
 
   .navbar-nav {
     li {
-      a.navbar-text {
-        font-size: ms(0);
-        padding: 0;
-      }
+      font-size: ms(0);
     }
   }
 
