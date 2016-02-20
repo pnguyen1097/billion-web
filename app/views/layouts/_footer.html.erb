@@ -24,7 +24,13 @@
           </li>
 
           <li>
-            <%= link_to 'Past Participants', projects_path %>
+            <% if @competition.projects.size > 0 %>
+              <%= link_to 'Participants', projects_path %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to 'Previous Cycle', 'https://idf.billioneffect.com' %>
           </li>
         </ul>
       </div>
