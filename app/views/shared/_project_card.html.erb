@@ -35,7 +35,7 @@ classes = ["project-card",
 
   <div class='card-footer'>
     <span class='card-points'>
-      <% if project.respond_to?(:rank) && project.rank.present? %>
+      <% if project.donation_count > 0 && project.respond_to?(:rank) && project.rank.present? %>
         <%= project.rank.ordinalize %> place
       <% end %>
     </span>

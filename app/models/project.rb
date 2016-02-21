@@ -37,7 +37,7 @@ class Project < ActiveRecord::Base
   # This returns an array, not a relation!
   # TODO: add spec
   def self.with_rank
-    find_by_sql("SELECT *, rank() over (order by total_points) FROM (#{order_by_points.to_sql}) AS temp")
+    find_by_sql("SELECT *, rank() over (order by total_points, random()) FROM (#{order_by_points.to_sql}) AS temp")
   end
 
   # TODO: There is a better way to do this. This makes me sad.
