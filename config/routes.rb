@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   post '/subscribe', to: 'subscribe#create', as: 'subscribe'
   resources 'bam_applications', only: [:create]
   resources :projects, only: [:index]
-  resources :transactions, only: [:new, :create], path: 'donate'
+
+  resources :transactions, only: [:new, :create], path: 'donate', constraints: lambda { |request|
+    Competition.current_competition.open_donation
+  }
 
   # static pages
   get 'privacy' => 'high_voltage/pages#show', id: 'privacy'
