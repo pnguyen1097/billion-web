@@ -7,15 +7,16 @@ classes = ["project-card",
          ].join(' ')
 %>
 <div class='<%= classes %>'>
+  <% link = new_transaction_path(project_id: project.id) %>
 
-  <%= link_to project_path(project), title: project.name  do %>
+  <%= link_to link, title: project.name  do %>
     <div class='card-image' style='background-image: url(<%= project.card_image_url || "http://placehold.it/640x480"%>)'>
     </div>
   <% end %>
 
   <div class='card-content'>
     <div class='card-project-title'>
-      <%= link_to project.name, project_path(project), title: project.name %>
+      <%= link_to project.name, link, title: project.name %>
     </div>
     <p class='card-description'><%= truncate(project.blurb, length: 140)%></p>
   </div>
@@ -26,6 +27,6 @@ classes = ["project-card",
         <%= project.rank.ordinalize %> place
       <% end %>
     </span>
-    <%= link_to 'learn more', project_path(project), class: 'card-learn-more' %>
+    <%= link_to 'donate', link, class: 'card-learn-more' %>
   </div>
 </div>

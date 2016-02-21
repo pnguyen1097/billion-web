@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   post '/subscribe', to: 'subscribe#create', as: 'subscribe'
   resources 'bam_applications', only: [:create]
-  resources :projects, only: [:index, :show]
+  resources :projects, only: [:index]
   resources :transactions, only: [:new, :create], path: 'donate'
 
   # static pages

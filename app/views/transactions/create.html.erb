@@ -9,10 +9,9 @@
         <div class='col-md-8 col-md-offset-2'>
           Thanks a billion! Your money has helped bringing
           <span class='thank-you-project-name'>
-            <%= link_to @transaction.recipient.name,
-              project_path(@transaction.recipient) %>
+            <strong><%= @transaction.recipient.name %></strong>
           </span>
-          one step closer to to winning the Billion Fund.
+          one step closer to to winning the People's Choice Award.
         </div>
       </div>
     </div>
@@ -25,10 +24,12 @@
         <p class='thank-you-see-more-intro'><strong>But wait, there's more!</strong><br/>
         Check out these other awesome movements</p>
 
-        <% @competition.projects.active.order('random()').where.not(id: @transaction.recipient.id).limit(4).each do |project| %>
-          <div class='col-md-3'>
-            <%= render partial: 'shared/project_card', locals: { project: project } %>
-          </div>
+        <% @competition.projects.with_rank
+          .reject { |p| p.id == @transaction.recipient.id }
+          .sample(4).each do |project| %>
+            <div class='col-md-3'>
+              <%= render partial: 'shared/project_card', locals: { project: project } %>
+            </div>
         <% end %>
 
         <div class='text-center'>
