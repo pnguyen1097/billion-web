@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  DOLLAR_TO_POINT = 500
+  DOLLAR_TO_POINT = 1
 
   rescue_from Payment::RecordInvalid, with: :render_payment_error
   rescue_from ActiveRecord::RecordInvalid, with: :render_error

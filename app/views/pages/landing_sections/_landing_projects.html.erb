@@ -1,16 +1,16 @@
 <%
-winner = @competition.projects.order_by_points.first
-projects = @competition.projects.where.not(id: winner.try(:id))
-
-projects = projects.order('random()').limit(4)
-subheading = 'These projects are no longer eligable for funding through ' +
-  'Billion. However, they continue to make Columbus a better place every day.' +
-  ' Check them out!'
+    if has_winner
+      heading = 'Honorable Mentions'
+      subheading = ''
+    else
+      heading = 'Support A Project'
+      subheading = "Who would you like to see winning the People's Choice Award?"
+    end
 %>
 
   <div class='container'>
     <div class='landing-section-heading'>
-      <h1>Support Columbus Changemakers</h1>
+      <h1><%= heading %></h1>
       <div class='row'>
         <div class='col-md-8 col-md-offset-2'>
           <p class='landing-section-subheading'><%= subheading %></p>

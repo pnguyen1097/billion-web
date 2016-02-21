@@ -9,7 +9,7 @@ namespace :dev_seed do
 
   desc 'Add seed projects'
   task projects: :environment do
-    FactoryGirl.create_list :project, 14, :with_collaborators, competition: Competition.first
+    FactoryGirl.create_list :project, 19, :with_collaborators, competition: Competition.first
   end
 
   desc 'Add seed transactions'
@@ -19,7 +19,7 @@ namespace :dev_seed do
 
       rand(10..20).times do
         dollar_to_point = TransactionsController::DOLLAR_TO_POINT
-        amount = rand(1.0..200.0).round(2)
+        amount = rand(1.0..20.0).round(2)
         points = (amount * dollar_to_point).ceil
 
         Transaction.create(recipient: temp_user, amount: amount,

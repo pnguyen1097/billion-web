@@ -20,12 +20,25 @@ class Project < ActiveRecord::Base
   scope :active, -> { where(eliminated_at: nil) }
 
   scope :order_by_points, lambda {
-    select('projects.*, sum(points) as points')
+    select('projects.*, sum(points) as total_points')
       .joins('LEFT JOIN transactions ON projects.id = transactions.recipient_id ')
       .where('transactions.recipient_type = \'Project\' OR transactions.recipient_type IS NULL')
-      .order('points DESC NULLS LAST')
+      .order('total_points DESC NULLS LAST')
       .group('projects.id')
   }
+
+  # Use Postgres rank() to add a ranks attribute to each project in a
+  # collection.
+  #
+  # This gives you the ranks within the projects it is called on, so to get
+  # rank for a competition, this must be called on the collection of all
+  # projects in the competition.
+  #
+  # This returns an array, not a relation!
+  # TODO: add spec
+  def self.with_rank
+    find_by_sql("SELECT *, rank() over (order by total_points, random()) FROM (#{order_by_points.to_sql}) AS temp")
+  end
 
   # TODO: There is a better way to do this. This makes me sad.
   def current_competitor

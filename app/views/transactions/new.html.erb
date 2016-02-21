@@ -41,12 +41,7 @@
 
           to the <%= link_to 'Billion&nbsp;Fund'.html_safe, story_path, target: '_blank' %>, <br/>
 
-          giving
-          <span class='point-container'>
-            <span class='point-value'><%= TransactionsController::DOLLAR_TO_POINT %></span>
-            <span class='point-unit'>points</span>
-          </span>
-          to
+          in support of
 
           <%= f.collection_select :recipient_id, @projects, :id, :name, { prompt: '...' },
             class: 'project-select inline-form-field',

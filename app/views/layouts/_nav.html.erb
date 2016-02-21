@@ -22,12 +22,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <% winner = @competition.projects.where(eliminated_at: nil) %>
             <li><%= link_to 'Our Story', story_path %></li>
 
-            <% if winner.present? %>
+            <% if @competition.has_winner? %>
               <li>
-                <%= link_to 'The Billion Winner', project_path(winner) %>
+                <%= link_to 'The Billion Winner', project_path(@competition.winner) %>
               </li>
             <% end %>
 

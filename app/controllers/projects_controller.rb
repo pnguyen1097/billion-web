@@ -4,6 +4,6 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = @competition.projects.order_by_points.order('eliminated_at NULLS FIRST, random()')
+    @projects = @competition.projects.with_rank
   end
 end

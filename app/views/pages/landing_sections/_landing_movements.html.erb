@@ -2,6 +2,17 @@
   <% if @competition.active_round.present? %>
     <%= render 'pages/landing_sections/landing_bracket' %>
   <% else %>
-    <%= render 'pages/landing_sections/landing_projects' %>
+    <%
+      projects = @competition.projects.with_rank
+      winners, losers = projects.partition { |p| p.eliminated_at.nil? }
+      if winners.size == 1
+        winner = winner.first
+        projects = losers
+        concat render partial: 'pages/landing_sections/landing_winner', locals: { winner: winner }
+      end
+      projects = projects.sample(4)
+      concat render partial: 'pages/landing_sections/landing_projects',
+        locals: { projects: projects, has_winner: winner.present?}
+    %>
   <% end %>
 </section>
