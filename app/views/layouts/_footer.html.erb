@@ -17,13 +17,6 @@
           </li>
 
           <li>
-            <% remaining = @competition.projects.where(eliminated_at: nil) %>
-            <% if remaining.size == 1 %>
-              <%= link_to 'The Billion Winner', project_path(remaining.first) %>
-            <% end %>
-          </li>
-
-          <li>
             <% if @competition.projects.size > 0 %>
               <%= link_to 'Participants', projects_path %>
             <% end %>

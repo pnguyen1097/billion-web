@@ -24,12 +24,6 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to 'Our Story', story_path %></li>
 
-            <% if @competition.has_winner? %>
-              <li>
-                <%= link_to 'The Billion Winner', project_path(@competition.winner) %>
-              </li>
-            <% end %>
-
             <% if @competition.projects.size > 0 %>
               <li>
                 <%= link_to 'Participants', projects_path %>

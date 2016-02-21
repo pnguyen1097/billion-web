@@ -16,47 +16,5 @@
       </div>
     </div>
   </div>
-
-  <!--
-  <div class='row'>
-    <div class='col-md-12 text-center'>
-      <%# NOTE: Blog post? Donate? See other projects?  %>
-      <%= link_to 'Call to action', projects_path, class: 'project-see-all btn btn-lg btn-primary' %>
-    </div>
-  </div>
-  -->
 </div>
 </section>
-
-<section class='landing-section landing-movements' id='landing-movements'>
-  <div class='container'>
-    <div class='landing-section-heading'>
-      <h1>Support Columbus Changemaker</h1>
-      <div class='row'>
-        <div class='col-md-8 col-md-offset-2'>
-          <p class='landing-section-subheading'>
-          These projects are no longer eligible for funding through Billion.
-          However, they continue to make Columbus a better place every day.
-          Check them out!
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class='row'>
-      <% @projects = @competition.projects.where.not(id: winner.id).order('random()').limit(4) %>
-      <% @projects.each do |project| %>
-        <div class='col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-3'>
-        <%= render partial: 'shared/project_card', locals: { project: project } %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class='row'>
-      <div class='col-md-12 text-center'>
-        <%= link_to 'See all projects', projects_path, class: 'project-see-all btn btn-lg btn-primary' %>
-      </div>
-    </div>
-  </div>
-</section>
-

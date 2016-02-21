@@ -12,8 +12,7 @@
 </div>
 
 <section class='projects-body'>
-  <% has_winner = @competition.projects.active.count == 1 %>
-  <% winner_id = @projects.active.first.id if has_winner %>
+  <% winner_id = @competition.winner.try(:id) %>
 
   <div class='container'>
     <div class='row'>
