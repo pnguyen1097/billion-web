@@ -22,7 +22,9 @@ classes = ["project-card",
 
   <div class='card-footer'>
     <span class='card-points'>
-      <%= pluralize(number_with_delimiter(project.points_donated), 'pt') %>
+      <% if project.respond_to?(:rank) && project.rank.present? %>
+        <%= project.rank.ordinalize %> place
+      <% end %>
     </span>
     <%= link_to 'learn more', project_path(project), class: 'card-learn-more' %>
   </div>

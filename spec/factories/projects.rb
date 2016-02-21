@@ -4,19 +4,13 @@ FactoryGirl.define do
     short_name { name.parameterize }
     blurb { Faker::Lorem.paragraph }
     description do
-      rand(3..4).times.map do
-        [
-          "# #{Faker::Lorem.sentence}",
-          "#{Faker::Lorem.paragraph(5)}",
-          "#{Faker::Lorem.paragraph(10)}",
-          "#{Faker::Lorem.sentences(5).map { |s| "- #{s}" }.join("\n") }",
-          "#{Faker::Lorem.paragraph(10)}",
-          "#{Faker::Lorem.sentences(5).map.with_index { |s, i| "#{i + 1}. #{s}" }.join("\n") }"
-        ].join("\n\n")
-      end.join("\n\n")
+      [
+        "# #{Faker::Lorem.sentence}",
+        "#{Faker::Lorem.paragraph(5)}",
+      ].join("\n\n")
     end
     card_image_url 'http://lorempixel.com/400/200/business'
-    video_url 'https://www.youtube.com/watch?v=SYOQ4w9EXzI'
+    project_image_url 'http://lorempixel.com/1800/1200/business'
     competition
 
     trait :with_comments do
