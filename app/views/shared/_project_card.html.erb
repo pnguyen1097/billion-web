@@ -7,16 +7,28 @@ classes = ["project-card",
          ].join(' ')
 %>
 <div class='<%= classes %>'>
-  <% link = new_transaction_path(project_id: project.id) %>
+  <% link = @competition.open_donation && new_transaction_path(project_id: project.id) %>
+  <%
+    # TODO: do something else?
+    def link_to_if_present(*args, &block)
+      capture do
+        if block_given?
+          args.first ? link_to(*args, &block) : yield
+        else
+          args.second ? link_to(*args, &block) : args.first
+        end
+      end
+    end
+  %>
 
-  <%= link_to link, title: project.name  do %>
+  <%= link_to_if_present link, title: project.name  do %>
     <div class='card-image' style='background-image: url(<%= project.card_image_url || "http://placehold.it/640x480"%>)'>
     </div>
   <% end %>
 
   <div class='card-content'>
     <div class='card-project-title'>
-      <%= link_to project.name, link, title: project.name %>
+      <%= link_to_if_present project.name, link, title: project.name %>
     </div>
     <p class='card-description'><%= truncate(project.blurb, length: 140)%></p>
   </div>
@@ -27,6 +39,8 @@ classes = ["project-card",
         <%= project.rank.ordinalize %> place
       <% end %>
     </span>
-    <%= link_to 'donate', link, class: 'card-learn-more' %>
+    <% if @competition.open_donation %>
+      <%= link_to 'donate', link, class: 'card-learn-more' %>
+    <% end %>
   </div>
 </div>
