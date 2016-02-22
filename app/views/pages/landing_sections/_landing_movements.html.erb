@@ -6,10 +6,11 @@
   winners, losers = projects.partition { |p| p.eliminated_at.nil? }
   if @competition.has_winner?
     winner = @competition.winner
-    projects = losers
+    projects = losers.first(4)
     concat render partial: 'pages/landing_sections/landing_winner', locals: { winner: winner }
+  else
+    projects = projects.sample(4)
   end
-  projects = projects.first(4)
   concat render partial: 'pages/landing_sections/landing_projects',
     locals: { projects: projects, has_winner: winner.present?}
   %>
