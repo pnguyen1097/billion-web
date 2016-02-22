@@ -21,8 +21,7 @@ class Project < ActiveRecord::Base
 
   scope :order_by_points, lambda {
     select('projects.*, sum(points) as total_points')
-      .joins('LEFT JOIN transactions ON projects.id = transactions.recipient_id ')
-      .where('transactions.recipient_type = \'Project\' OR transactions.recipient_type IS NULL')
+      .joins('LEFT JOIN transactions ON projects.id = transactions.recipient_id and transactions.recipient_type = \'Project\'')
       .order('total_points DESC NULLS LAST')
       .group('projects.id')
   }

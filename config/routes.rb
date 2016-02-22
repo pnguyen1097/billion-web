@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'leaderboard/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
@@ -13,6 +15,9 @@ Rails.application.routes.draw do
   resources :transactions, only: [:new, :create], path: 'donate', constraints: lambda { |request|
     Competition.current_competition.open_donation
   }
+
+  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
+  get '/leaderboard/data' => 'leaderboard#data', as: :leaderboard_data
 
   # static pages
   get 'privacy' => 'high_voltage/pages#show', id: 'privacy'

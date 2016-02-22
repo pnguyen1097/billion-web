@@ -1,0 +1,101 @@
+<!DOCTYPE>
+<html>
+  <%= render "layouts/heading" %>
+  <script src='//cdn.jsdelivr.net/lodash/4.5.0/lodash.min.js'></script>
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+    <style>
+      body {
+        background-color: #323B63;
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .rank-container {
+        margin: auto;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: column wrap;
+        align-content: stretch;
+        width: 100%;
+        height: 80%;
+      }
+      .project {
+        padding: 20px 0;
+        width: 40%;
+        height: 16%;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .rank {
+        font-size: 2.5vw;
+        font-weight: bold;
+        display: block;
+        line-height: 40px;
+        height: 40px;
+        text-align: right;
+        width: 2em;
+        margin-right: 1em;
+      }
+      .name {
+        font-weight: 300;
+        font-size: 1.5vw;
+        line-height: 40px;
+        height: 40px;
+      }
+      .billion {
+        height: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .billion img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    </style>
+
+  <body>
+
+    <div class='rank-container'>
+    </div>
+    <div class='billion'>
+      <%= image_tag 'billion_logo_white_small.png', class: 'logo' %>
+    </div>
+
+
+    <script>
+      var template = _.template("<div class='project'>" +
+                                "<div class='rank'>${rank}</div>" +
+                                "<div class='name'>${name}</div>" +
+                                "</div>");
+      function display(data) {
+        $('.rank-container').fadeOut(400, function() {
+          $('.rank-container').empty();
+          _.each(data.projects, function(project) {
+            $('.rank-container').append(template(project))
+          });
+
+          $('.rank-container').fadeIn(400);
+        });
+      }
+
+      display(<%= raw(render( partial: 'data', formats: [:json])) %>);
+
+      setInterval(function() {
+        $.get({
+          url: '/leaderboard/data.json',
+          success: function(data, textStatus, jqXHR) {
+            display(data);
+          }
+        });
+      }, 30000);
+    </script>
+  </body>
