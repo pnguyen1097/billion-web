@@ -14,7 +14,7 @@
           </button>
           <%= link_to root_path, class: 'navbar-brand' do %>
             <div class='composite-logo'>
-              <%= image_tag 'billion_logo_small.png', class: 'logo' %><span class='tenant'>GiveBackHack</span>
+              <%= image_tag 'billion_logo_small.png', class: 'logo' %><span class='tenant'>Fuse</span>
             </div>
           <% end %>
         </div>
@@ -35,7 +35,7 @@
 
             <% if @competition.total_raised > 100 %>
               <li class="navbar-total">
-                The Billion Fund:
+                Fuse Beer Fund
                 <%= number_to_currency @competition.total_raised %>
               </li>
             <% end %>

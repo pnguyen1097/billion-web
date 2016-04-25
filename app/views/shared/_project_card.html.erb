@@ -35,8 +35,8 @@ classes = ["project-card",
 
   <div class='card-footer'>
     <span class='card-points'>
-      <% if project.donation_count > 0 && project.respond_to?(:rank) && project.rank.present? %>
-        <%= project.rank.ordinalize %> place
+      <% if project.donation_count > 0 %>
+        $<%= project.points_donated / TransactionsController::DOLLAR_TO_POINT %>
       <% end %>
     </span>
     <% if @competition.open_donation %>

@@ -40,9 +40,9 @@ class TransactionsController < ApplicationController
 
   def authorize_project(project)
     if project.nil?
-      flash[:error] = ['The selected project does not exists.']
+      flash[:error] = ['The selected beer does not exists.']
     elsif project.eliminated?
-      flash[:error] = ['The selected project has been eliminated.']
+      flash[:error] = ['The selected beer has been eliminated.']
     end
 
     return true if flash[:error].blank?

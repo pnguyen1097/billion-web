@@ -3,8 +3,8 @@
       heading = 'Honorable Mentions'
       subheading = ''
     else
-      heading = 'Support A Project'
-      subheading = "Who would you like to see winning the People's Choice Award?"
+      heading = 'Pick Your Beer'
+      subheading = 'What would you drink?'
     end
 %>
 
@@ -24,12 +24,6 @@
         <%= render partial: 'shared/project_card', locals: { project: project } %>
       </div>
       <% end %>
-    </div>
-
-    <div class='row'>
-      <div class='col-md-12 text-center'>
-        <%= link_to 'See all projects', projects_path, class: 'project-see-all btn btn-lg btn-primary' %>
-      </div>
     </div>
   </div>
 </section>

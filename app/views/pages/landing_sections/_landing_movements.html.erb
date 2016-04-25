@@ -9,9 +9,9 @@
     projects = losers.first(4)
     concat render partial: 'pages/landing_sections/landing_winner', locals: { winner: winner }
   else
-    projects = projects.sample(4)
+    projects = projects
   end
   concat render partial: 'pages/landing_sections/landing_projects',
     locals: { projects: projects, has_winner: winner.present?}
   %>
-  <% end %>
+<% end %>

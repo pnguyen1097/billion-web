@@ -11,7 +11,7 @@
           <span class='thank-you-project-name'>
             <strong><%= @transaction.recipient.name %></strong>
           </span>
-          one step closer to to winning the People's Choice Award.
+          one step closer to to buying more beer.
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class='container'>
       <div class='row'>
         <p class='thank-you-see-more-intro'><strong>But wait, there's more!</strong><br/>
-        Check out these other awesome movements</p>
+        Check out these other awesome beers</p>
 
         <% @competition.projects.with_rank
           .reject { |p| p.id == @transaction.recipient.id }
@@ -33,7 +33,7 @@
         <% end %>
 
         <div class='text-center'>
-          <%= link_to 'See All Projects', projects_path,
+          <%= link_to 'See All Beers', projects_path,
             class: 'btn btn-lg btn-primary'
         %>
         </div>

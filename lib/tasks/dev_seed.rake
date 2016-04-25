@@ -1,4 +1,5 @@
 namespace :dev_seed do
+  desc 'Add all development seed data'
   task all: [:competition, :projects, :transactions] do
   end
 
