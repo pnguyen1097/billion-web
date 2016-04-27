@@ -103,7 +103,13 @@
   }
 
   &-works {
-    background-color: white;
+    background-color: $blue;
+    padding: $grid-gutter-width * 5 0;
+
+    img {
+      border-radius: 50%;
+      border: 1px solid lighten($blue, 3%);
+    }
 
     a {
       border: 1px solid $brand-primary;
