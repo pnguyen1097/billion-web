@@ -40,7 +40,9 @@ classes = ["project-card",
       <% end %>
     </span>
     <% if @competition.open_donation %>
-      <%= link_to 'donate', link, class: 'card-learn-more' %>
+      <%= link_to link, class: 'card-learn-more' do %>
+        donate <%= icon('angle-double-right') %>
+      <% end %>
     <% end %>
   </div>
 </div>
