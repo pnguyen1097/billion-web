@@ -7,6 +7,11 @@ class Competition < ActiveRecord::Base
   # TODO: validate that end_date > start_date
   validates :code_name, :start_date, :end_date, presence: true
 
+  validates :dollar_to_point, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 1
+  }
+
   # TODO: spec
   def has_winner?
     projects.where(eliminated_at: nil).count == 1
