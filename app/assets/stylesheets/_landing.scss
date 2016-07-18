@@ -150,7 +150,7 @@
       &::before, &::after {
         $height: 177px;
         content: '';
-        background-image: image-url('cup.png');
+        // background-image: image-url('cup.png');
         background-position: center center;
         background-repeat: no-repeat;
         height: $height;

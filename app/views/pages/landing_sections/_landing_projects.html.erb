@@ -6,8 +6,12 @@
       heading = 'Pick Your Beer'
       subheading = 'What would you drink?'
     end
+
+  nonwines = projects.reject(&:wine?)
+  wines = projects.select(&:wine?)
 %>
 
+<% if nonwines.any? %>
 <section class='landing-section'>
   <div class='container'>
     <div class='landing-section-heading'>
@@ -19,7 +23,7 @@
       </div>
     </div>
     <div class='row'>
-      <% projects.each do |project| %>
+      <% nonwines.each do |project| %>
       <div class='col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-3'>
         <%= render partial: 'shared/project_card', locals: { project: project } %>
       </div>
@@ -27,3 +31,27 @@
     </div>
   </div>
 </section>
+<% end %>
+
+<% if wines.any? %>
+  <% wine = wines.first %>
+  <section class='landing-section landing-winner'>
+    <div class='container'>
+      <div class='landing-section-heading'>
+        <h1>Support The Wine Fund</h1>
+        <div class='row'>
+          <div class='col-md-8 col-md-offset-2'>
+            <p class='landing-section-subheading'>Wines are cool too.</p>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='card-container'>
+          <div class='col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4'>
+            <%= render partial: 'shared/project_card', locals: { project: wine, card_type: :winner_large } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
