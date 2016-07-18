@@ -1,0 +1,94 @@
+<div class="page-header">
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h1><%= @competition.code_name %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <% flash.each do |type, message| %>
+        <div class='alert alert-<%= type == 'error' ? 'danger' : 'info' %>'>
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class='col-md-6'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          New Cash Transaction
+        </div>
+        <div class="panel-body">
+          <%= form_for Transaction.new , url: control_panel_transactions_path do |f| %>
+            <div class='form-group'>
+              <%= f.label :amount %>
+              <div class='input-group'>
+                <span class='input-group-addon'>$</span>
+                <%= f.number_field :amount, class: 'form-control', required: true %>
+              </div>
+            </div>
+
+            <div class='form-group'>
+              <%= f.label :recipient_id %>
+              <%= f.collection_select :recipient_id, @projects, :id, :name, { prompt: '...' },
+                class: 'form-control',
+                required: true %>
+            </div>
+
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
+
+          <% end %>
+        </div>
+      </div>
+
+      <div class='panel panel-default'>
+        <div class='panel-heading'>Recent transactions</div>
+        <div class='panel-body'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Project</td>
+                <th>Amount</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @recent_transactions.empty? %>
+                <tr>
+                  <td colspan=2>No transactions</td>
+                </tr>
+              <% else %>
+                <% @recent_transactions.each do |transaction| %>
+                  <tr>
+                    <td><%= transaction.recipient.name %></td>
+                    <td>$<%= '%.2f' % transaction.amount %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-md-6'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>Competition settings</div>
+        <div class='panel-body'>
+          <%= form_for [:control_panel, @competition] do |f| %>
+            <div class='form-group'>
+              <%= f.check_box :open_donation %>
+              <%= f.label :open_donation %>
+            </div>
+
+            <%= f.submit 'Save', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

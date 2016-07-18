@@ -68,7 +68,7 @@
           <p>Once selected, these movements rally their supporters to raise
           money for the Billion Fund. Points are awarded based on the amount of
           money that is raised: each dollar will earn the movement
-          <%= pluralize(TransactionsController::DOLLAR_TO_POINT, 'point') %>.
+          <%= pluralize(@competition.dollar_to_point, 'point') %>.
           </p>
 
           <p>The teams with the most points advance to the next stage of the event: <em>the bracket</em></p>

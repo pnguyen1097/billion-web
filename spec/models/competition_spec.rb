@@ -6,6 +6,7 @@ describe Competition, type: :model do
     it { should validate_presence_of(:code_name) }
     it { should validate_presence_of(:start_date) }
     it { should validate_presence_of(:end_date) }
+    it { should validate_numericality_of(:dollar_to_point).is_greater_than_or_equal_to(1) }
   end
 
   describe 'associations' do

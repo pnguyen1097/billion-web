@@ -8,6 +8,14 @@ Rails.application.routes.draw do
 
   root to: 'pages#show', id: 'landing'
 
+  authenticated :user, lambda { |u| u.admin? } do
+    namespace :control_panel do
+      root 'dashboard#index'
+      resources :transactions, only: [:create]
+      resources :competitions, only: [:update]
+    end
+  end
+
   post '/subscribe', to: 'subscribe#create', as: 'subscribe'
   resources 'bam_applications', only: [:create]
   resources :projects, only: [:index]

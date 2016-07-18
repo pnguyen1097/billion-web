@@ -19,7 +19,7 @@ namespace :dev_seed do
       temp_user = FactoryGirl.create :temp_user
 
       rand(10..20).times do
-        dollar_to_point = TransactionsController::DOLLAR_TO_POINT
+        dollar_to_point = Competition.first.dollar_to_point
         amount = rand(1.0..20.0).round(2)
         points = (amount * dollar_to_point).ceil
 

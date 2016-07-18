@@ -1,6 +1,4 @@
 class TransactionsController < ApplicationController
-  DOLLAR_TO_POINT = 1
-
   rescue_from Payment::RecordInvalid, with: :render_payment_error
   rescue_from ActiveRecord::RecordInvalid, with: :render_error
 
@@ -94,7 +92,7 @@ class TransactionsController < ApplicationController
 
   def purchase_points
     @purchase = Transaction.new purchase_params
-    @purchase.points = ((@purchase.amount || 0) * DOLLAR_TO_POINT).ceil
+    @purchase.points = ((@purchase.amount || 0) * @competition.dollar_to_point).ceil
     @purchase.save!
   end
 
