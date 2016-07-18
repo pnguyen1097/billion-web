@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :control_panel do
       root 'dashboard#index'
       resources :transactions, only: [:create]
+      resources :competitions, only: [:update]
     end
   end
 
