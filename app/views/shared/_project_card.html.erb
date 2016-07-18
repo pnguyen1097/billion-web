@@ -36,7 +36,7 @@ classes = ["project-card",
   <div class='card-footer'>
     <span class='card-points'>
       <% if project.donation_count > 0 %>
-        $<%= project.points_donated / TransactionsController::DOLLAR_TO_POINT %> raised
+        $<%= project.points_donated / @competition.dollar_to_point %> raised
       <% end %>
     </span>
     <% if @competition.open_donation %>
