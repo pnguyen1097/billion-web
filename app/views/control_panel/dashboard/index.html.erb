@@ -17,6 +17,7 @@
         </div>
       <% end %>
     </div>
+
     <div class='col-md-6'>
       <div class='panel panel-default'>
         <div class='panel-heading'>
@@ -70,6 +71,22 @@
               <% end %>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-md-6'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>Competition settings</div>
+        <div class='panel-body'>
+          <%= form_for [:control_panel, @competition] do |f| %>
+            <div class='form-group'>
+              <%= f.check_box :open_donation %>
+              <%= f.label :open_donation %>
+            </div>
+
+            <%= f.submit 'Save', class: 'btn btn-primary' %>
+          <% end %>
         </div>
       </div>
     </div>
