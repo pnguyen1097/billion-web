@@ -67,6 +67,7 @@ RailsAdmin.config do |config|
       field :sent_transactions
       field :received_transactions
       field :short_name
+      field :wine
     end
   end
 end
