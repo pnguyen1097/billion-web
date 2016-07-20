@@ -30,14 +30,17 @@ describe Competition, type: :model do
   end
 
   describe '#total_raised' do
-    it 'returns the total funds raised' do
-      competition = create :competition
-      create :transaction, sender: nil, competition: competition, amount: 10.00
-      create :transaction, sender: nil, competition: competition, amount: 20.00
-      create :transaction, sender: nil, competition: competition, amount: 30.00
-      create :transaction, competition: competition, amount: 40.00
+    it 'returns the total funds raise, excluding wine' do
+      competition = create :competition, dollar_to_point: 1
+      wine = create :project, competition: competition, wine: true
+      projects = create_list :project, 5, competition: competition, wine: false
 
-      expect(competition.total_raised).to eq(60.00)
+      create :transaction, recipient: wine, amount: 20
+      projects.each do |project|
+        create :transaction, sender: nil, recipient: project, competition: competition, points: 10
+      end
+
+      expect(competition.total_raised).to eq(projects.length * 10)
     end
   end
 

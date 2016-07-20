@@ -32,6 +32,12 @@ class Competition < ActiveRecord::Base
   end
 
   def total_raised
-    transactions.where('sender_id IS NULL').sum(:amount)
+    projects_net_total = projects.select('projects.*, (SUM(coalesce(received.points, 0)) - SUM(coalesce(sent.points, 0))) AS net_total')
+      .joins("LEFT OUTER JOIN transactions AS received ON received.recipient_type = 'Project' AND received.recipient_id = projects.id")
+      .joins("LEFT OUTER JOIN transactions AS sent ON sent.sender_type = 'Project' AND sent.sender_id = projects.id")
+      .where(wine: false)
+      .group('projects.id')
+    projects_net_total.reduce(0) { |m, p| m + p.net_total } / dollar_to_point.to_f
   end
+
 end
