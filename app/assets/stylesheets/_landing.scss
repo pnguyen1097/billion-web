@@ -73,10 +73,10 @@
       margin-bottom: 180px;
 
       @media (min-width: $screen-md) {
-        font-size: ms(3);
+        font-size: ms(4);
 
         .large {
-          font-size: ms(4);
+          font-size: ms(5);
         }
       }
     }
@@ -133,6 +133,10 @@
     .project-see-all {
       display: inline;
       margin: 0 auto;
+    }
+
+    .projects-container {
+      @include clearfix;
     }
   }
 

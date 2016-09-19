@@ -3,12 +3,12 @@
       heading = 'Honorable Mentions'
       subheading = ''
     else
-      heading = 'Support A Project'
-      subheading = "Who would you like to see winning the People's Choice Award?"
+      heading = 'Support A Statement'
+      subheading = 'Which statement do you think best represents this new fund for Columbus?'
     end
 %>
 
-<section class='landing-section'>
+<section class='landing-section landing-movements'>
   <div class='container'>
     <div class='landing-section-heading'>
       <h1><%= heading %></h1>
@@ -19,17 +19,21 @@
       </div>
     </div>
     <div class='row'>
-      <% projects.each do |project| %>
-      <div class='col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-3'>
-        <%= render partial: 'shared/project_card', locals: { project: project } %>
+      <div class='projects-container'>
+        <% projects.each do |project| %>
+        <div class='col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-3'>
+          <%= render partial: 'shared/project_card', locals: { project: project } %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
 
+    <!--
     <div class='row'>
       <div class='col-md-12 text-center'>
         <%= link_to 'See all projects', projects_path, class: 'project-see-all btn btn-lg btn-primary' %>
       </div>
     </div>
+    -->
   </div>
 </section>
